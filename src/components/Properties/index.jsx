@@ -2,6 +2,9 @@
 import { useState } from "react";
 import Property from "./Property";
 import AddProperty from "./AddProperty";
+import Button from "../common/Button";
+import { ReactComponent as PlusIconBlue } from "../../assets/icons/plus_icon_blue.svg";
+
 import { css } from "@emotion/react";
 
 const propertiesStyles = ({ colors }) => css`
@@ -21,16 +24,16 @@ const propertiesStyles = ({ colors }) => css`
     .header-title {
       font-size: 24px;
       font-weight: bold;
+      height: 34px;
     }
     .header-add-property {
       display: flex;
       align-items: center;
       height: 24px;
-      p {
-        text-decoration: underline;
-        font-size: 14px;
-        color: ${colors.blue.base};
-        line-height: 14px;
+      button {
+        span {
+          color: ${colors.blue.base};
+        }
       }
     }
   }
@@ -38,7 +41,7 @@ const propertiesStyles = ({ colors }) => css`
 `;
 
 const Properties = (props) => {
-  const { properties, updatePropertyField } = props;
+  const { properties, updatePropertyField, onAddNewProperty} = props;
   const [openNewProperty, setOpenNewProperty] = useState(false);
   return (
     <div css={propertiesStyles}>
@@ -46,11 +49,10 @@ const Properties = (props) => {
         <div>
           <p className="header-title">Properties</p>
           <div className="header-add-property" onClick={() => setOpenNewProperty(true)}>
-            +
-            <p>Add new property</p>
+            <Button variant="link" label="Add new property" icon={<PlusIconBlue/>}/>
           </div>
         </div>
-        {openNewProperty && <AddProperty/>}
+        {openNewProperty && <AddProperty onAdd={onAddNewProperty} onCancel={() => setOpenNewProperty(false)}/>}
       </div>
       {Object.entries(properties).map((property) => (
         <Property key={property[0]} data={property} updatePropertyField={updatePropertyField}/>

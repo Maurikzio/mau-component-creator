@@ -18,6 +18,7 @@ export default {
     },
     gray: {
       base: "#444444",
+      light10: "#5e5e5e",
       ligth25: "#848484",
       dark25: "#040404",
       dark20: "#111111",
@@ -26,6 +27,7 @@ export default {
     blue: {
       base: "#006CFF",
     },
+    white: "#FFFFFF",
     link: {
       primary: "#006cff"
     }

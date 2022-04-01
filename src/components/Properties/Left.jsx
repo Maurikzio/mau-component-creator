@@ -21,7 +21,7 @@ const Left = (props) => {
   const { open, name, visible, updatePropertyField, id } = props;
 
   const handleOnClickVisibility = () => {
-    updatePropertyField(id, "visible", !visible);
+    updatePropertyField({ id, field: "visible", newValue: !visible});
   }
 
   const leftClassNames = cn(

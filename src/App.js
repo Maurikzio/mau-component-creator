@@ -2,8 +2,8 @@
 import { useCallback, useState } from "react";
 import Properties from "./components/Properties";
 import { css } from "@emotion/react";
-import "./App.css";
 import produce from "immer";
+import "./App.css";
 
 
 const appStyles = ({ colors }) => css`
@@ -94,7 +94,7 @@ function App() {
       },
   });
 
-  const updatePropertyField = useCallback((id, field, newValue) => {
+  const updatePropertyField = useCallback(({id, field, newValue}) => {
     setProperties(
       produce((draft) => {
         const property = draft[id];
@@ -121,12 +121,16 @@ function App() {
     )
   }, []);
 
+  const handleAddNewProperty = (newProperty) => {
+    setProperties({...properties, newProperty})
+  }
+
   return (
     <div css={appStyles}>
       {/* <Topbar /> */}
       {/* <Header /> */}
       {/* <Preview /> */}
-      <Properties properties={properties} updatePropertyField={updatePropertyField}/>
+      <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
     </div>
   );
 }

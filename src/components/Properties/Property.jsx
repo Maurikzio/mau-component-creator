@@ -7,7 +7,7 @@ import Details from "./Details";
 
 const propertyStyles = ({ colors }) => css`
   border-bottom: 1px solid ${colors.silver.dark5};
-  padding: 11px 20px;
+  padding: 7px 20px;
   /* min-height: 47px; */
   display: flex;
   align-items: center;
