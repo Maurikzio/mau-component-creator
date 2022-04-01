@@ -75,9 +75,10 @@ const AddProperty = (props) => {
   });
 
   const handleOnAdd = () => {
-    const property = {...newProperty, id: "11"}
+    const id = new Date().getTime();
+    const property = {...newProperty}
     delete property.helperTexts;
-    onAdd({...property});
+    onAdd({ [id]: property });
     onCancel();
   }
 

@@ -37,12 +37,14 @@ const propertiesStyles = ({ colors }) => css`
       }
     }
   }
-  
 `;
 
 const Properties = (props) => {
   const { properties, updatePropertyField, onAddNewProperty} = props;
   const [openNewProperty, setOpenNewProperty] = useState(false);
+
+  const sortedPropertiesByName = Object.entries(properties).sort((a, b) => a[1].propertyName > b[1].propertyName ? 1 : -1);
+
   return (
     <div css={propertiesStyles}>
       <div className="properties-header">
@@ -54,7 +56,7 @@ const Properties = (props) => {
         </div>
         {openNewProperty && <AddProperty onAdd={onAddNewProperty} onCancel={() => setOpenNewProperty(false)}/>}
       </div>
-      {Object.entries(properties).map((property) => (
+      {sortedPropertiesByName.map((property) => (
         <Property key={property[0]} data={property} updatePropertyField={updatePropertyField}/>
       ))}
     </div>

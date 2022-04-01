@@ -41,7 +41,7 @@ function App() {
       visible: true,
       },
     "4" : { 
-      propertyName: "Disable focus ripple", 
+      propertyName: "Disabled focus ripple", 
       displayName: "", 
       description: "", 
       type: "boolean", 
@@ -122,7 +122,7 @@ function App() {
   }, []);
 
   const handleAddNewProperty = (newProperty) => {
-    setProperties({...properties, newProperty})
+    setProperties({...properties, ...newProperty})
   }
 
   return (
