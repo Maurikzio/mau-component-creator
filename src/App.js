@@ -2,6 +2,7 @@
 import { useCallback, useState } from "react";
 import Properties from "./components/Properties";
 import Preview from "./components/Preview";
+import Header from "./components/Header"
 import { css } from "@emotion/react";
 import produce from "immer";
 import "./App.css";
@@ -129,7 +130,7 @@ function App() {
   return (
     <div css={appStyles}>
       {/* <Topbar /> */}
-      {/* <Header /> */}
+      <Header />
       <Preview properties={properties} />
       <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
     </div>
