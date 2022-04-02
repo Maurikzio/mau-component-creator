@@ -4,6 +4,7 @@ import Properties from "./components/Properties";
 import Preview from "./components/Preview";
 import Header from "./components/Header";
 import Topbar from "./components/Topbar";
+import Aside from "./components/Aside";
 import { css } from "@emotion/react";
 import produce from "immer";
 import "./App.css";
@@ -11,8 +12,13 @@ import "./App.css";
 
 const appStyles = ({ colors }) => css`
   color: ${colors.primary};
+  display: flex;
 
   section {
+    width: 1182px;
+  }
+
+  main {
     padding-top: 45px;
     padding-left: 43px;
   }
@@ -137,12 +143,15 @@ function App() {
 
   return (
     <div css={appStyles}>
-      <Topbar componentName={componentName}/>
       <section>
-        <Header componentName={componentName}/>
-        <Preview properties={properties} />
-        <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
+        <Topbar componentName={componentName}/>
+        <main>
+          <Header componentName={componentName}/>
+          <Preview properties={properties} />
+          <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
+        </main>
       </section>
+      <Aside/>
     </div>
   );
 }

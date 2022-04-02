@@ -6,11 +6,12 @@ import { ReactComponent as GroupIcon } from "../../assets/icons/layout-medium-ti
 import Button from "../common/Button";
 
 const topbarStyles = ({ colors, typography }) => css`
-  height: 32px;
+  height: 39px;
   display: flex;
   align-items: center;
   column-gap: 16px;
   border-bottom: 1px solid ${colors.silver.dark5};
+  padding-right: 20px;
   .topbar-left-icon {
     padding: 2px 9px;
     border-right: 1px solid ${colors.silver.dark5};
