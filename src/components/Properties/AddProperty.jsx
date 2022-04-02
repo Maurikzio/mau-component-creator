@@ -82,6 +82,7 @@ const AddProperty = (props) => {
     onCancel();
   }
 
+  const isBtnDisabled = !newProperty.propertyName;
   
   return (
     <div css={addPropertyStyles}>
@@ -90,7 +91,12 @@ const AddProperty = (props) => {
       </div>
       <div className="actions">
         <Button label="Cancel" onClick={onCancel} variant="link" />
-        <Button label="Add" onClick={handleOnAdd}/>
+        <Button 
+          label="Add" 
+          onClick={handleOnAdd} 
+          disabled={isBtnDisabled} 
+          tooltipText={isBtnDisabled ? "Property name is required" : null}
+        />
       </div>
     </div>
   )

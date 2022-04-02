@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import Tooltip from "./Tooltip";
 import { css } from "@emotion/react"
 import cn from "classnames";
 
@@ -32,21 +33,40 @@ const buttonStyles = ({ colors }) => css`
     height: 24px;
     font-size: 12px;
   }
-`;
 
+  &.btn-disabled {
+    background-color: ${colors.gray.light30};
+    cursor: default;
+  }
+`;
 
 //variant= button | link
 
 const Button = (props) => {
-  const { onClick, label, variant="button", size="md", icon = null} = props;
+  const { onClick, label, variant="button", size="md", icon=null, disabled=false, tooltipText} = props;
 
-  const buttonClassnames = cn([`btn-${variant}`, `btn-${size}`]);
+  const buttonClassnames = cn([`btn-${variant}`, `btn-${size}`], {"btn-disabled": disabled});
 
-  return (
-    <button onClick={onClick} css={buttonStyles} className={buttonClassnames} size={size}>
+  const smartBtn = (
+    <button 
+      size={size} 
+      onClick={!disabled ? onClick : undefined} 
+      css={buttonStyles} 
+      className={buttonClassnames} 
+      >
       {icon} <span>{label}</span>
     </button>
   )
+
+  if(tooltipText) {
+    return (
+      <Tooltip arrow title={tooltipText}>
+        {smartBtn}
+      </Tooltip>
+    )
+  }
+
+  return smartBtn;
 };
 
 export default Button;

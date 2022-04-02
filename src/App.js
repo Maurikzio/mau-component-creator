@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useCallback, useState } from "react";
 import Properties from "./components/Properties";
+import Preview from "./components/Preview";
 import { css } from "@emotion/react";
 import produce from "immer";
 import "./App.css";
@@ -129,7 +130,7 @@ function App() {
     <div css={appStyles}>
       {/* <Topbar /> */}
       {/* <Header /> */}
-      {/* <Preview /> */}
+      <Preview properties={properties} />
       <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
     </div>
   );

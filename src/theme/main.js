@@ -20,6 +20,7 @@ export default {
       base: "#444444",
       light10: "#5e5e5e",
       ligth25: "#848484",
+      light30: "#8C8C8C",
       dark25: "#040404",
       dark20: "#111111",
       dark10: "#2A2A2A",
