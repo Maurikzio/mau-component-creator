@@ -29,6 +29,7 @@ export default {
       base: "#006CFF",
     },
     white: "#FFFFFF",
+    gallery: "#F0F0F0",
     link: {
       primary: "#006cff"
     }

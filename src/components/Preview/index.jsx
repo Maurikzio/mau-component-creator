@@ -38,6 +38,7 @@ const Preview = (props) => {
         color={propertiesToPass?.["color"] || "primary"}
         disableFocusRipple={propertiesToPass?.["disabledFocusRipple"]}
         disableRipple={propertiesToPass?.["disabledRipple"]}
+        disabled={propertiesToPass?.["disabled"]}
       >Sign up</Button>
     </div>
   )

@@ -17,11 +17,12 @@ const headerStyles = css`
   }
 `;
 
-const Header = () => {
+const Header = (props) => {
+  const { componentName } = props;
   const [isVisible, setIsVisible] = useState(true);
   return (
     <div css={headerStyles}>
-      <div className="header-title">Button</div>
+      <div className="header-title">{componentName}</div>
       <VisibilityIcon visible={isVisible} onClick={() => setIsVisible(!isVisible)} tooltipText="Toggle component visibility in library"/>
       <SettingsIcon tooltipText="Component settings" />
     </div>

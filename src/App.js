@@ -2,7 +2,8 @@
 import { useCallback, useState } from "react";
 import Properties from "./components/Properties";
 import Preview from "./components/Preview";
-import Header from "./components/Header"
+import Header from "./components/Header";
+import Topbar from "./components/Topbar";
 import { css } from "@emotion/react";
 import produce from "immer";
 import "./App.css";
@@ -10,6 +11,11 @@ import "./App.css";
 
 const appStyles = ({ colors }) => css`
   color: ${colors.primary};
+
+  section {
+    padding-top: 45px;
+    padding-left: 43px;
+  }
 `;
 
 function App() {
@@ -127,12 +133,16 @@ function App() {
     setProperties({...properties, ...newProperty})
   }
 
+  const componentName = "Button";
+
   return (
     <div css={appStyles}>
-      {/* <Topbar /> */}
-      <Header />
-      <Preview properties={properties} />
-      <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
+      <Topbar componentName={componentName}/>
+      <section>
+        <Header componentName={componentName}/>
+        <Preview properties={properties} />
+        <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
+      </section>
     </div>
   );
 }

@@ -32,20 +32,30 @@ const buttonStyles = ({ colors }) => css`
   &.btn-sm {
     height: 24px;
     font-size: 12px;
+    padding: 5px 10px 3px 10px;
   }
 
   &.btn-disabled {
     background-color: ${colors.gray.light30};
     cursor: default;
   }
+
+  &.btn-default {
+    background-color: ${colors.gallery};
+    color: ${colors.gray.light10};
+  }
 `;
 
-//variant= button | link
+//variant= button | link | default
 
 const Button = (props) => {
   const { onClick, label, variant="button", size="md", icon=null, disabled=false, tooltipText} = props;
 
-  const buttonClassnames = cn([`btn-${variant}`, `btn-${size}`], {"btn-disabled": disabled});
+  const buttonClassnames = cn(
+    "btn",
+    [`btn-${variant}`, `btn-${size}`], 
+    {"btn-disabled": disabled}
+  );
 
   const smartBtn = (
     <button 
