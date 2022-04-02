@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import cn from "classnames";
 import { css } from "@emotion/react";
-import Visibility from "../common/Visibility";
-import Trash from "../common/Trash";
+import VisibilityIcon from "../common/VisibilityIcon";
+import TrashIcon from "../common/TrashIcon";
 
 const leftStyles = css`
   width: 226px;
@@ -31,12 +31,12 @@ const Left = (props) => {
   return (
     <div css={leftStyles} className={leftClassNames}>
       <span className={cn({"invisible": !visible})}>{name}</span>
-      <Visibility 
+      <VisibilityIcon 
         visible={visible}
         onClick={handleOnClickVisibility} 
         tooltipText={`${visible ? "Hide" : "Show"} property`}
       />
-      {open && <Trash tooltipText="Delete property"/>}
+      {open && <TrashIcon tooltipText="Delete property"/>}
     </div>
   )
 };

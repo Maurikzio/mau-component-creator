@@ -2,27 +2,17 @@
 import IconButton from "./IconButton";
 import { ReactComponent as VisibleIcon } from "../../assets/icons/visibility_visible.svg";
 import { ReactComponent as HiddenIcon } from "../../assets/icons/visibility_hidden.svg";
-import Tooltip from "./Tooltip";
 
-const Visibility = (props) => {
+const VisibilityIcon = (props) => {
   const { onClick, tooltipText, visible } = props;
   
-  const visibilityIcon = (
+  return (
     <IconButton 
       icon={visible ? <VisibleIcon /> : <HiddenIcon />} 
       onClick={onClick}
+      tooltipText={tooltipText}
     />
   );
-
-  if(tooltipText) {
-    return (
-      <Tooltip title={tooltipText} arrow>
-        {visibilityIcon}
-      </Tooltip>
-    )
-  }
-
-  return visibilityIcon;
 };
 
-export default Visibility;
+export default VisibilityIcon;

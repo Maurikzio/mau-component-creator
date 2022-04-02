@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import Settings from "../common/Settings";
-import Visibility from "../common/Visibility";
+import { useState } from "react";
+import SettingsIcon from "../common/SettingsIcon";
+import VisibilityIcon from "../common/VisibilityIcon";
 import { css } from "@emotion/react";
 
 const headerStyles = css`
@@ -14,15 +15,15 @@ const headerStyles = css`
     font-size: 36px;
     font-weight: bold;
   }
-
-`
+`;
 
 const Header = () => {
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <div css={headerStyles}>
       <div className="header-title">Button</div>
-      <Visibility visible tooltipText="Toggle component visibility in library"/>
-      <Settings tooltipText="Component settings" />
+      <VisibilityIcon visible={isVisible} onClick={() => setIsVisible(!isVisible)} tooltipText="Toggle component visibility in library"/>
+      <SettingsIcon tooltipText="Component settings" />
     </div>
   )
 };

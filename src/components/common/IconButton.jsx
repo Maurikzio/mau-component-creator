@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-// import Tooltip from "@material-ui/core/Tooltip";
+import Tooltip from "../common/Tooltip";
 import cn from "classnames";
 import { css } from "@emotion/react";
 
@@ -34,7 +34,7 @@ const iconStyles = ({ colors }) => css`
 // variants = "primary" | "danger",
 
 const IconButton = (props) => {
-  const { icon, onClick, variant = "primary" } = props;
+  const { icon, onClick, variant = "primary", tooltipText="" } = props;
 
   const handleOnClick = (e) => {
     e.stopPropagation();
@@ -43,11 +43,21 @@ const IconButton = (props) => {
 
   const iconButtonClassNames = cn([variant])
 
-  return (
+  const smartIcon = (
     <div css={iconStyles} className={iconButtonClassNames} onClick={onClick && handleOnClick}>
       {icon}
     </div>
-  )
+  );
+
+  if (tooltipText) {
+    return (
+      <Tooltip arrow title={tooltipText}>
+        {smartIcon}
+      </Tooltip>
+    )
+  }
+
+  return smartIcon
 };
 
 export default IconButton;
