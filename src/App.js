@@ -7,7 +7,7 @@ import Topbar from "./components/Topbar";
 import Aside from "./components/Aside";
 import { css } from "@emotion/react";
 import produce from "immer";
-import "./App.css";
+import initialProperties from "./properties";
 
 
 const appStyles = ({ colors }) => css`
@@ -26,87 +26,7 @@ const appStyles = ({ colors }) => css`
 
 function App() {
 
-  const [ properties, setProperties ] = useState({
-    "1" : { 
-      propertyName: "Color",
-      displayName: "", 
-      description: "", 
-      type: "one of", 
-      control: "select", 
-      options: ["default", "inherit", "primary", "secondary"],
-      defaultValue: "primary",
-      visible: true,
-    },
-    "2" : { 
-      propertyName: "Children", 
-      displayName: "", 
-      description: "", 
-      type: "node", 
-      control: "textarea", 
-      defaultValue: "",
-      visible: true,
-    },
-    "3" : { 
-      propertyName: "Disabled",
-      displayName: "", 
-      description: "", 
-      type: "boolean", 
-      defaultValue: true,
-      visible: true,
-      },
-    "4" : { 
-      propertyName: "Disabled focus ripple", 
-      displayName: "", 
-      description: "", 
-      type: "boolean", 
-      defaultValue: true,
-      visible: false,
-    },
-    "5" : { 
-      propertyName: "Disabled ripple", 
-      displayName: "", 
-      description: "", 
-      type: "boolean", 
-      defaultValue: true,
-      visible: false,
-    },
-    "6" : { 
-      propertyName: "Full Width", 
-      displayName: "", 
-      description: "", 
-      type: "boolean", 
-      defaultValue: true,
-      visible: true,
-    },
-    "7" : { 
-      propertyName: "Mini", 
-      displayName: "", 
-      description: "", 
-      type: "boolean", 
-      defaultValue: false,
-      visible: true,
-    },
-    "8" : { 
-      propertyName: "Size", 
-      displayName: "", 
-      description: "", 
-      type: "one of", 
-      control: "select",
-      options: ["default", "small", "medium", "large"],
-      defaultValue: "large",
-      visible: true,
-      },
-    "9" : { 
-      propertyName: "Variant", 
-      displayName: "", 
-      description: "", 
-      type: "one of", 
-      control: "select",
-      options: ["default", "text", "outlined", "contained"],
-      defaultValue: "contained",
-      visible: true,
-      },
-  });
+  const [ properties, setProperties ] = useState(initialProperties);
 
   const updatePropertyField = useCallback(({id, field, newValue}) => {
     setProperties(
@@ -135,6 +55,14 @@ function App() {
     )
   }, []);
 
+  const handleRemoveProperty = (id) => {
+    setProperties(
+      produce(draft => {
+        delete draft[id];
+      })
+    )
+  }
+
   const handleAddNewProperty = (newProperty) => {
     setProperties({...properties, ...newProperty})
   }
@@ -148,7 +76,12 @@ function App() {
         <main>
           <Header componentName={componentName}/>
           <Preview properties={properties} />
-          <Properties properties={properties} updatePropertyField={updatePropertyField} onAddNewProperty={handleAddNewProperty}/>
+          <Properties 
+            properties={properties} 
+            updatePropertyField={updatePropertyField} 
+            onAddNewProperty={handleAddNewProperty}
+            onRemoveProperty={handleRemoveProperty}
+          />
         </main>
       </section>
       <Aside/>
