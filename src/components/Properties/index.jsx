@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Property from "./Property";
 import AddProperty from "./AddProperty";
 import Button from "../common/Button";
 import { ReactComponent as PlusIconBlue } from "../../assets/icons/plus_icon_blue.svg";
-
+import { camelize } from "../../utils";
 import { css } from "@emotion/react";
 
 const propertiesStyles = ({ colors }) => css`
@@ -45,6 +45,8 @@ const Properties = (props) => {
 
   const sortedPropertiesByName = Object.entries(properties).sort((a, b) => a[1].propertyName > b[1].propertyName ? 1 : -1);
 
+  const currentPropertyNames = Object.values(properties).map(property => camelize(property.propertyName));
+
   return (
     <div css={propertiesStyles}>
       <div className="properties-header">
@@ -54,7 +56,13 @@ const Properties = (props) => {
             <Button variant="link" label="Add new property" icon={<PlusIconBlue/>}/>
           </div>
         </div>
-        {openNewProperty && <AddProperty onAdd={onAddNewProperty} onCancel={() => setOpenNewProperty(false)}/>}
+        {openNewProperty && (
+          <AddProperty 
+            onAdd={onAddNewProperty} 
+            onCancel={() => setOpenNewProperty(false)}
+            currentPropertyNames={currentPropertyNames}
+          />
+        )}
       </div>
       {sortedPropertiesByName.map((property) => (
         <Property key={property[0]} data={property} updatePropertyField={updatePropertyField}/>

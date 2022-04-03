@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Fields from "./Fields";
 import Button from "../common/Button";
 import produce from "immer";
 import { css } from "@emotion/react";
+import { camelize } from "../../utils";
 
 const addPropertyStyles = ({ colors }) => css`
   border-bottom: 1px solid ${colors.silver.dark5};
@@ -31,7 +32,7 @@ const addPropertyStyles = ({ colors }) => css`
 `;
 
 const AddProperty = (props) => {
-  const { onAdd, onCancel } = props;
+  const { onAdd, onCancel, currentPropertyNames } = props;
 
   const [newProperty, setNewProperty] = useState({
     propertyName: "",
@@ -48,7 +49,25 @@ const AddProperty = (props) => {
     }
   });
 
+  const [addingIssues, setAddingIssues] = useState({propertyNameEmpty: "", alreadyExists: ""});
+
+  useEffect(() => {
+    if (!newProperty.propertyName) {
+      setAddingIssues({...addingIssues, propertyNameEmpty: "Property name is required"});
+    }
+  }, [])
+
   const updateNewProperty = useCallback(({field, newValue}) => {
+
+    if(field === "propertyName") {
+      setAddingIssues({...addingIssues, propertyNameEmpty: !newValue ? "Property name is required" : ""})
+    }
+
+    setAddingIssues((oldState) => ({
+      ...oldState, 
+      alreadyExists: currentPropertyNames.includes(camelize(newValue)) ? `Property '${newValue}' already exists` : ""
+    }));
+    
     setNewProperty(
       produce((draft) => {
         const basicFields = ["propertyName", "displayName", "description", "defaultValue", "options"];
@@ -71,7 +90,8 @@ const AddProperty = (props) => {
           draft.type = newValue;
         }
       })
-    )
+    );
+
   });
 
   const handleOnAdd = () => {
@@ -81,9 +101,14 @@ const AddProperty = (props) => {
     onAdd({ [id]: property });
     onCancel();
   }
-
-  const isBtnDisabled = !newProperty.propertyName;
   
+  const addingIssuesText = Object.values(addingIssues).reduce((acc, curr) => {
+    if(curr) {
+      acc += `\u{02023} ${curr}\n`;
+    }
+    return acc;
+  }, "");
+
   return (
     <div css={addPropertyStyles}>
       <div className="details">
@@ -94,8 +119,8 @@ const AddProperty = (props) => {
         <Button 
           label="Add" 
           onClick={handleOnAdd} 
-          disabled={isBtnDisabled} 
-          tooltipText={isBtnDisabled ? "Property name is required" : null}
+          disabled={addingIssuesText.length} 
+          tooltipText={addingIssuesText}
         />
       </div>
     </div>
