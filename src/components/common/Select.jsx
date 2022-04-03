@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { ReactComponent as Chevron} from "../../assets/icons/chevron.svg";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const selectStyles = ({ colors, typography }) => css`
   height: 24px;
@@ -70,5 +71,12 @@ const Select = (props) => {
       ))}
     </TextField>
   )
-}
+};
+
+Select.propTypes = {
+  options: t.array,
+  value: t.string,
+  onChange: t.func.isRequired,
+};
+
 export default Select;

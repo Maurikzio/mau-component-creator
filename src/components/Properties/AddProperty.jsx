@@ -5,6 +5,7 @@ import Button from "../common/Button";
 import produce from "immer";
 import { css } from "@emotion/react";
 import { camelize } from "../../utils";
+import t from "prop-types";
 
 const addPropertyStyles = ({ colors }) => css`
   border-bottom: 1px solid ${colors.silver.dark5};
@@ -119,12 +120,19 @@ const AddProperty = (props) => {
         <Button 
           label="Add" 
           onClick={handleOnAdd} 
-          disabled={addingIssuesText.length} 
+          disabled={!!addingIssuesText?.length} 
           tooltipText={addingIssuesText}
         />
       </div>
     </div>
   )
-}
+};
+
+AddProperty.propTypes = {
+  onAdd: t.func.isRequired,
+  onCancel: t.func.isRequired,
+  currentPropertyNames: t.array.isRequired,
+};
+
 
 export default AddProperty;

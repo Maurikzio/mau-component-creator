@@ -5,18 +5,19 @@ import { Breadcrumbs } from "@material-ui/core";
 import { ReactComponent as GroupIcon } from "../../assets/icons/layout-medium-tile-outline.svg";
 import Button from "../common/Button";
 import IconButton from "../common/IconButton";
+import t from "prop-types";
 
 const topbarStyles = ({ colors, typography }) => css`
-  height: 39px;
-  display: flex;
   align-items: center;
   column-gap: 16px;
+  display: flex;
+  height: 39px;
   border-bottom: 1px solid ${colors.silver.dark5};
   padding-right: 20px;
   .topbar-left-icon {
-    padding: 2px 9px;
     border-right: 1px solid ${colors.silver.dark5};
     cursor: pointer;
+    padding: 2px 9px;
   }
 
   nav {
@@ -60,7 +61,11 @@ const Topbar = (props) => {
       </div>
       
       <div className="topbar-actions">
-        <Button label="Discard changes" variant="link" size="sm" />
+        <Button
+          label="Discard changes" 
+          variant="link" size="sm" 
+          onClick={() => {}}
+        />
         <Button 
           label={`${!changesToSave ? "No changes to save"  : "Save changes"}`} 
           size="sm" 
@@ -68,9 +73,12 @@ const Topbar = (props) => {
           variant={changesToSave ? "button" : "default"}
         />
       </div>
-
     </div>
   )
 }
+
+Topbar.propTypes = {
+  componentName: t.string.isRequired,
+};
 
 export default Topbar;

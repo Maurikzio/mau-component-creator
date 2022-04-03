@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Tooltip as MuiTooltip } from "@material-ui/core";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const tooltipStyles = ({ colors }) => css`
   .MuiTooltip-tooltip {
@@ -20,7 +21,7 @@ const tooltipStyles = ({ colors }) => css`
 `;
 
 const Tooltip = (props) => {
-  const { title, arrow, children } = props;
+  const { title, arrow=true, children } = props;
 
   return (
     <div css={tooltipStyles}>
@@ -36,5 +37,10 @@ const Tooltip = (props) => {
     </div>
   )
 }
+
+Tooltip.propTypes = {
+  title: t.string.isRequired,
+  children: t.element.isRequired,
+};
 
 export default Tooltip;

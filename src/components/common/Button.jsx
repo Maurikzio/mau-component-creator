@@ -2,6 +2,7 @@
 import Tooltip from "./Tooltip";
 import { css } from "@emotion/react"
 import cn from "classnames";
+import t from "prop-types";
 
 const buttonStyles = ({ colors }) => css`
   outline: none;
@@ -49,7 +50,7 @@ const buttonStyles = ({ colors }) => css`
 //variant= button | link | default
 
 const Button = (props) => {
-  const { onClick, label, variant="button", size="md", icon=null, disabled=false, tooltipText} = props;
+  const { onClick, label, variant="button", size="md", icon=null, disabled=false, tooltipText } = props;
 
   const buttonClassnames = cn(
     "btn",
@@ -70,13 +71,23 @@ const Button = (props) => {
 
   if(tooltipText) {
     return (
-      <Tooltip arrow title={tooltipText}>
+      <Tooltip title={tooltipText}>
         {smartBtn}
       </Tooltip>
     )
   }
 
   return smartBtn;
+};
+
+Button.propTypes = {
+  onClick: t.func.isRequired,
+  label: t.string.isRequired,
+  variant: t.string,
+  size: t.string,
+  icon: t.element,
+  disabled: t.bool,
+  tooltipText: t.string,
 };
 
 export default Button;

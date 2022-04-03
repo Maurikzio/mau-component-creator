@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const booleanStyles = ({ colors }) => css`
   border: 1px solid ${colors.silver.dark5};
@@ -33,6 +33,11 @@ const Boolean = (props) => {
       <div className={`option ${!value ? "selected" : ""}`} onClick={() => handleOnClick(false)}>False</div>
     </div>
   )
-}
+};
+
+Boolean.propTypes = {
+  value: t.bool.isRequired,
+  onChange: t.func.isRequired,
+};
 
 export default Boolean;

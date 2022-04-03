@@ -3,6 +3,7 @@ import cn from "classnames";
 import { css } from "@emotion/react";
 import VisibilityIcon from "../common/VisibilityIcon";
 import TrashIcon from "../common/TrashIcon";
+import t from "prop-types";
 
 const leftStyles = css`
   width: 226px;
@@ -39,6 +40,14 @@ const Left = (props) => {
       {open && <TrashIcon tooltipText="Delete property" onClick={() => onRemoveProperty(id)}/>}
     </div>
   )
+};
+
+Left.propTypes = {
+  open: t.bool.isRequired,
+  name: t.string.isRequired,
+  updatePropertyField: t.func.isRequired,
+  id: t.string.isRequired,
+  onRemoveProperty: t.func.isRequired,
 };
 
 export default Left;

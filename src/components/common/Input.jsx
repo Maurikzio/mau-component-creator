@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const inputStyles = ({ colors, typography }) => css`
   border: none;
@@ -14,7 +15,7 @@ const inputStyles = ({ colors, typography }) => css`
 `
 
 const Input = (props) => {
-  const { onChange = () => {}, value } = props;
+  const { onChange, value } = props;
 
   return (
     <input 
@@ -23,6 +24,11 @@ const Input = (props) => {
       onChange={(e) => onChange(e.target.value)} 
     />
   )
+};
+
+Input.propTypes = {
+  onChange: t.func.isRequired,
+  value: t.string,
 };
 
 export default Input;

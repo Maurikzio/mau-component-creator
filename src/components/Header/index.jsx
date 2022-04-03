@@ -3,13 +3,14 @@ import { useState } from "react";
 import SettingsIcon from "../common/SettingsIcon";
 import VisibilityIcon from "../common/VisibilityIcon";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const headerStyles = css`
+  align-items: center;
+  column-gap: 5px;
   display: flex;
   justify-content: flex-start;
   margin-bottom: 28px;
-  align-items: center;
-  column-gap: 5px;
 
   .header-title {
     font-size: 36px;
@@ -27,6 +28,10 @@ const Header = (props) => {
       <SettingsIcon tooltipText="Component settings" />
     </div>
   )
+};
+
+Header.propTypes = {
+  componentName: t.string.isRequired,
 };
 
 export default Header;

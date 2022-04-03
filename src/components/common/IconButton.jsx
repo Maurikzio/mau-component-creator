@@ -2,6 +2,7 @@
 import Tooltip from "../common/Tooltip";
 import cn from "classnames";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const iconStyles = ({ colors }) => css`
   display: inline-flex;
@@ -51,13 +52,20 @@ const IconButton = (props) => {
 
   if (tooltipText) {
     return (
-      <Tooltip arrow title={tooltipText}>
+      <Tooltip title={tooltipText}>
         {smartIcon}
       </Tooltip>
     )
   }
 
   return smartIcon
+};
+
+IconButton.propTypes = {
+  icon: t.element.isRequired,
+  onClick: t.func,
+  variant: t.string,
+  tooltipText: t.string,
 };
 
 export default IconButton;

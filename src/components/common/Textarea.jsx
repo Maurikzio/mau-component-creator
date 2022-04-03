@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const textareaStyles = ({ colors, typography }) => css`
   resize: none;
@@ -24,6 +25,12 @@ const Textarea = (props) => {
       rows={rows}
     />
   )
+};
+
+Textarea.propTypes = {
+  value: t.string,
+  onChange: t.func.isRequired,
+  rows: t.number,
 };
 
 export default Textarea;

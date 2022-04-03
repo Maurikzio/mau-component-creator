@@ -4,17 +4,18 @@ import Input from "../common/Input";
 import Textarea from "../common/Textarea";
 import Select from "../common/Select";
 import Boolean from "../common/Boolean";
+import t from "prop-types";
 
 const Fields = (props) => {
   const { id, details, updatePropertyField } = props;
 
   const getDefaultValueComponent = ({type, value, options=[]}) => {
     const defaultValuesByType = {
-      "boolean": <Boolean value={value} onChange={(newValue) => updatePropertyField({id, field: "defaultValue", newValue})}/>,
-      "select": <Select options={options} value={value} onChange={(newValue) => updatePropertyField({id, field: "defaultValue", newValue})}/>,
-      "textarea": <Textarea value={value} onChange={(newValue) => updatePropertyField({id, field: "defaultValue", newValue})}/>
+      "boolean": () => <Boolean value={!!value} onChange={(newValue) => updatePropertyField({id, field: "defaultValue", newValue})}/>,
+      "select": () => <Select options={options} value={value} onChange={(newValue) => updatePropertyField({id, field: "defaultValue", newValue})}/>,
+      "textarea": () => <Textarea value={value} onChange={(newValue) => updatePropertyField({id, field: "defaultValue", newValue})}/>
     }
-    return defaultValuesByType[type];
+    return defaultValuesByType[type]();
   }
 
   const getControlComponentByType = (type, value) => {
@@ -76,6 +77,14 @@ const Fields = (props) => {
 
     </div>
   )
+};
+
+Fields.propTypes = {
+  id: t.string,
+  details: t.shape({
+    propertyName: t.string.isRequired,
+  }),
+  updatePropertyField: t.func.isRequired,
 };
 
 export default Fields;

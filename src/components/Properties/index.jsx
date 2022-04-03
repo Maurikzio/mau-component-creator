@@ -6,6 +6,7 @@ import Button from "../common/Button";
 import { ReactComponent as PlusIconBlue } from "../../assets/icons/plus_icon_blue.svg";
 import { camelize } from "../../utils";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
 const propertiesStyles = ({ colors }) => css`
   width: 820px;
@@ -52,8 +53,8 @@ const Properties = (props) => {
       <div className="properties-header">
         <div>
           <p className="header-title">Properties</p>
-          <div className="header-add-property" onClick={() => setOpenNewProperty(true)}>
-            <Button variant="link" label="Add new property" icon={<PlusIconBlue/>}/>
+          <div className="header-add-property" >
+            <Button variant="link" label="Add new property" icon={<PlusIconBlue/>} onClick={() => setOpenNewProperty(true)}/>
           </div>
         </div>
         {openNewProperty && (
@@ -74,6 +75,13 @@ const Properties = (props) => {
       ))}
     </div>
   )
-}
+};
+
+Properties.propTypes = {
+  properties: t.object.isRequired,
+  updatePropertyField: t.func.isRequired,
+  onAddNewProperty: t.func.isRequired,
+  onRemoveProperty: t.func.isRequired,
+};
 
 export default Properties;

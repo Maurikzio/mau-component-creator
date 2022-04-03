@@ -2,6 +2,7 @@
 import cn from "classnames";
 import { css } from "@emotion/react";
 import Fields from "./Fields";
+import t from "prop-types";
 
 const centerStyles = ({ colors }) => css`
   width: 513px;
@@ -40,6 +41,16 @@ const Details = (props) => {
       <Fields id={id} details={details} updatePropertyField={updatePropertyField}/>
     </div>
   )
-}
+};
+
+Details.propTypes = {
+  open: t.bool.isRequired,
+  details: t.shape({
+    propertyName: t.string.isRequired,
+  }),
+  id: t.string.isRequired,
+  updatePropertyField: t.func.isRequired,
+  visible: t.bool,
+};
 
 export default Details;

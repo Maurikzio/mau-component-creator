@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import Left from "./Left";
 import Right from "./Right";
 import Details from "./Details";
+import t from "prop-types";
 
 const propertyStyles = ({ colors }) => css`
   border-bottom: 1px solid ${colors.silver.dark5};
@@ -19,10 +20,10 @@ const propertyStyles = ({ colors }) => css`
 `
 
 const Property = (props) => {
-  const [open, setOpen] = useState(false);
-
-  const {data, updatePropertyField, onRemoveProperty} = props;
+  const { data, updatePropertyField, onRemoveProperty } = props;
   const [propertyId, details] = data;
+
+  const [open, setOpen] = useState(false);
 
   const toggleProperty = () => {
     setOpen(!open);
@@ -55,6 +56,12 @@ const Property = (props) => {
       /> 
     </div>
   )
+};
+
+Property.propTypes = {
+  data: t.array.isRequired,
+  updatePropertyField: t.func.isRequired,
+  onRemoveProperty: t.func.isRequired,
 };
 
 export default Property;

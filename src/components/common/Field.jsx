@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import cn from "classnames";
 import { css } from "@emotion/react";
+import t from "prop-types";
 
-const detailFieldStyles = ({ colors }) => css`
+const fieldStyles = ({ colors }) => css`
   margin-bottom: 12px;
   display: flex;
   flex-direction: column;
@@ -41,11 +42,11 @@ const detailFieldStyles = ({ colors }) => css`
 
 `;
 
-const DetailField = (props) => {
+const Field = (props) => {
   
   const { name, helperText="", variant="row", spaceless=false, children} = props;
 
-  const detailFieldClassnames = cn(
+  const fieldClassnames = cn(
     "field",
     `field-${variant}`,
     {
@@ -54,13 +55,22 @@ const DetailField = (props) => {
   );
 
   return (
-    <div css={detailFieldStyles} >
-      <div className={detailFieldClassnames}>
+    <div css={fieldStyles} >
+      <div className={fieldClassnames}>
         <p>{name}</p>
         {children}
       </div>
       {helperText && <div className="helper-text">{helperText}</div>}
     </div>
   )
-}
-export default DetailField;
+};
+
+Field.propTypes = {
+  name: t.string.isRequired,
+  helperText: t.string,
+  variant: t.string,
+  spaceless: t.bool,
+  children: t.element.isRequired
+};
+
+export default Field;
