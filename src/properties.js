@@ -27,7 +27,7 @@ export default {
     visible: true,
     },
   "4" : { 
-    propertyName: "Disabled focus ripple", 
+    propertyName: "Disable focus ripple", 
     displayName: "", 
     description: "", 
     type: "boolean", 
@@ -35,7 +35,7 @@ export default {
     visible: false,
   },
   "5" : { 
-    propertyName: "Disabled ripple", 
+    propertyName: "Disable ripple", 
     displayName: "", 
     description: "", 
     type: "boolean", 
@@ -56,7 +56,7 @@ export default {
     description: "", 
     type: "boolean", 
     defaultValue: false,
-    visible: true,
+    visible: false,
   },
   "8" : { 
     propertyName: "Size", 

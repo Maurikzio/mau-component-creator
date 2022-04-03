@@ -40,7 +40,7 @@ const propertiesStyles = ({ colors }) => css`
 `;
 
 const Properties = (props) => {
-  const { properties, updatePropertyField, onAddNewProperty} = props;
+  const { properties, updatePropertyField, onAddNewProperty, onRemoveProperty} = props;
   const [openNewProperty, setOpenNewProperty] = useState(false);
 
   const sortedPropertiesByName = Object.entries(properties).sort((a, b) => a[1].propertyName > b[1].propertyName ? 1 : -1);
@@ -65,7 +65,12 @@ const Properties = (props) => {
         )}
       </div>
       {sortedPropertiesByName.map((property) => (
-        <Property key={property[0]} data={property} updatePropertyField={updatePropertyField}/>
+        <Property 
+          key={property[0]} 
+          data={property} 
+          updatePropertyField={updatePropertyField}
+          onRemoveProperty={onRemoveProperty}
+        />
       ))}
     </div>
   )

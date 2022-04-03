@@ -21,7 +21,7 @@ const propertyStyles = ({ colors }) => css`
 const Property = (props) => {
   const [open, setOpen] = useState(false);
 
-  const {data, updatePropertyField} = props;
+  const {data, updatePropertyField, onRemoveProperty} = props;
   const [propertyId, details] = data;
 
   const toggleProperty = () => {
@@ -40,6 +40,7 @@ const Property = (props) => {
         visible={details.visible}
         updatePropertyField={updatePropertyField}
         id={propertyId}
+        onRemoveProperty={onRemoveProperty}
       />
       <Details 
         open={open} 

@@ -18,7 +18,7 @@ const leftStyles = css`
 `;
 
 const Left = (props) => {
-  const { open, name, visible, updatePropertyField, id } = props;
+  const { open, name, visible, updatePropertyField, id, onRemoveProperty } = props;
 
   const handleOnClickVisibility = () => {
     updatePropertyField({ id, field: "visible", newValue: !visible});
@@ -36,7 +36,7 @@ const Left = (props) => {
         onClick={handleOnClickVisibility} 
         tooltipText={`${visible ? "Hide" : "Show"} property`}
       />
-      {open && <TrashIcon tooltipText="Delete property"/>}
+      {open && <TrashIcon tooltipText="Delete property" onClick={() => onRemoveProperty(id)}/>}
     </div>
   )
 };

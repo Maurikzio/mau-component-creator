@@ -32,13 +32,7 @@ const Preview = (props) => {
     <div css={previewStyles}>
       <p>Component Preview</p>
       <Button 
-        variant={propertiesToPass?.["variant"] || "primary"} 
-        size={propertiesToPass?.["size"] || "small"} 
-        fullWidth={propertiesToPass?.["fullWidth"]} 
-        color={propertiesToPass?.["color"] || "primary"}
-        disableFocusRipple={propertiesToPass?.["disabledFocusRipple"]}
-        disableRipple={propertiesToPass?.["disabledRipple"]}
-        disabled={propertiesToPass?.["disabled"]}
+        {...propertiesToPass}
       >Sign up</Button>
     </div>
   )
