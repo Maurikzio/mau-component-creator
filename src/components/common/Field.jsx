@@ -42,10 +42,9 @@ const fieldStyles = ({ colors }) => css`
 
 `;
 
-const Field = (props) => {
+const Field = (props) => {  
+  const { name, helperText, variant="row", spaceless=false, children} = props;
   
-  const { name, helperText="", variant="row", spaceless=false, children} = props;
-
   const fieldClassnames = cn(
     "field",
     `field-${variant}`,
@@ -67,7 +66,7 @@ const Field = (props) => {
 
 Field.propTypes = {
   name: t.string.isRequired,
-  helperText: t.string,
+  helperText: t.oneOfType([t.string, t.element]),
   variant: t.string,
   spaceless: t.bool,
   children: t.element.isRequired

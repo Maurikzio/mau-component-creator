@@ -61,13 +61,12 @@ const AddProperty = (props) => {
   const updateNewProperty = useCallback(({field, newValue}) => {
 
     if(field === "propertyName") {
-      setAddingIssues({...addingIssues, propertyNameEmpty: !newValue ? "Property name is required" : ""})
+      setAddingIssues({
+        ...addingIssues, 
+        propertyNameEmpty: !newValue ? "Property name is required" : "",
+        alreadyExists: currentPropertyNames.includes(camelize(newValue)) ? `Property '${newValue}' already exists` : "",
+      })
     }
-
-    setAddingIssues((oldState) => ({
-      ...oldState, 
-      alreadyExists: currentPropertyNames.includes(camelize(newValue)) ? `Property '${newValue}' already exists` : ""
-    }));
     
     setNewProperty(
       produce((draft) => {

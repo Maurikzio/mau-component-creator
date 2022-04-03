@@ -28,15 +28,15 @@ const Fields = (props) => {
 
   return (
     <div>
-      <Field name="Property name" helperText={details?.helperTexts?.["propertyName"]}>
+      <Field name="Property name" helperText={details?.helperTexts?.["propertyName"] || ""}>
         <Input value={details.propertyName} onChange={(newValue) => updatePropertyField({id, field: "propertyName", newValue})}/>
       </Field> 
 
-      <Field name="Display name" helperText={details?.helperTexts?.["displayName"]}>
+      <Field name="Display name" helperText={details?.helperTexts?.["displayName"] || ""}>
         <Input value={details.displayName} onChange={(newValue) => updatePropertyField({id, field: "displayName", newValue})}/>
       </Field>
 
-      <Field name="Description" variant="column" spaceless helperText={details?.helperTexts?.["description"]}>
+      <Field name="Description" variant="column" spaceless helperText={details?.helperTexts?.["description"] || ""}>
         <Textarea 
           value={details.description} 
           onChange={(newValue) => updatePropertyField({id, field: "description", newValue})}
@@ -44,7 +44,7 @@ const Fields = (props) => {
         />
       </Field> 
 
-      <Field name="Property type" helperText={details?.helperTexts?.["type"]}>
+      <Field name="Property type" helperText={details?.helperTexts?.["type"] || ""}>
         <Select 
           options={["one of", "boolean", "node"]} 
           value={details.type} 
@@ -53,7 +53,7 @@ const Fields = (props) => {
       </Field> 
 
       {details.type !== "boolean" && (
-        <Field name="Property control" helperText={details?.helperTexts?.["control"]}>
+        <Field name="Property control" helperText={details?.helperTexts?.["control"] || ""}>
           {getControlComponentByType(details.type, details.control)}
         </Field>
       )}
@@ -67,7 +67,11 @@ const Fields = (props) => {
         </Field>
       )}
 
-      <Field name="Default value" variant={details.type === "node" ? "column" : "row"} helperText={details?.helperTexts?.["defaultValue"]}>
+      <Field 
+        name="Default value" 
+        variant={details.type === "node" ? "column" : "row"} 
+        helperText={details?.helperTexts?.["defaultValue"] || ""}
+      >
         {getDefaultValueComponent({
           type: details.control || details.type, 
           value: details.defaultValue,
