@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import { Breadcrumbs } from "@material-ui/core";
 import { ReactComponent as GroupIcon } from "../../assets/icons/layout-medium-tile-outline.svg";
 import Button from "../common/Button";
+import IconButton from "../common/IconButton";
 
 const topbarStyles = ({ colors, typography }) => css`
   height: 39px;
@@ -15,6 +16,7 @@ const topbarStyles = ({ colors, typography }) => css`
   .topbar-left-icon {
     padding: 2px 9px;
     border-right: 1px solid ${colors.silver.dark5};
+    cursor: pointer;
   }
 
   nav {
@@ -47,7 +49,7 @@ const Topbar = (props) => {
   return (
     <div css={topbarStyles}>
       <div className="topbar-left-icon">
-        <GroupIcon/>
+        <IconButton icon={<GroupIcon/>} tooltipText="Open dashboard" arrow/>
       </div>
         
       <div className="topbar-breadcrumbs">
