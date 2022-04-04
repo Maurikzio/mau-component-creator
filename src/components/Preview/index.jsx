@@ -53,11 +53,11 @@ const Preview = (props) => {
       <p>Component Preview</p>
       <Button 
         // {...propertiesToPass} // :(
-        color={setPropertyValue("color", "primary")}
+        color={setPropertyValue("color")}
         disabled={setBooleanPropertyValue("disabled")}
-        variant={setPropertyValue("variant", "contained")}
+        variant={setPropertyValue("variant")}
         fullWidth={setBooleanPropertyValue("fullWidth")}
-        size={setPropertyValue("size", "small")}
+        size={setPropertyValue("size")}
         disableRipple={setBooleanPropertyValue("disableRipple")}
         disableFocusRipple={setBooleanPropertyValue("disableFocusRipple")}
         disableElevation={setBooleanPropertyValue("disableElevation")}
