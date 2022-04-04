@@ -53,9 +53,11 @@ const AddProperty = (props) => {
   const [addingIssues, setAddingIssues] = useState({propertyNameEmpty: "", alreadyExists: ""});
 
   useEffect(() => {
-    if (!newProperty.propertyName) {
-      setAddingIssues({...addingIssues, propertyNameEmpty: "Property name is required"});
-    }
+    setAddingIssues({
+      ...addingIssues, 
+      propertyNameEmpty: !newProperty.propertyName ? "Property name is required" : ""
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateNewProperty = useCallback(({field, newValue}) => {
@@ -78,7 +80,7 @@ const AddProperty = (props) => {
         }
       })
     );
-  });
+  }, [addingIssues, currentPropertyNames]);
 
   const handleOnAdd = () => {
     const id = new Date().getTime();

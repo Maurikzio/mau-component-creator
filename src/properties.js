@@ -1,4 +1,4 @@
-export default {
+const properties =  {
   "1" : { 
     propertyName: "Color",
     displayName: "", 
@@ -78,4 +78,6 @@ export default {
     defaultValue: "contained",
     visible: true,
     },
-}
+};
+
+export default properties;

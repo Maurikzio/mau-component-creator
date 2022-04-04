@@ -13,11 +13,24 @@ const propertyStyles = ({ colors }) => css`
   display: flex;
   align-items: center;
 
+  &:hover {
+    .rigth-icon {
+      background-color: ${colors.silver.ligth1};
+    }
+  }
+
   &.close {
     cursor: pointer;
   }
 
-`
+  &.open {
+    &:hover {
+      .rigth-icon {
+        background-color: transparent;
+      }
+    }
+  }
+`;
 
 const Property = (props) => {
   const { data, updatePropertyField, onRemoveProperty } = props;

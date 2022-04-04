@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Property from "./Property";
 import AddProperty from "./AddProperty";
 import Button from "../common/Button";

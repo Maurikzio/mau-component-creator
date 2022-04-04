@@ -21,19 +21,46 @@ const previewStyles = css`
 `
 const Preview = (props) => {
   const { properties } = props;
-  
-  const propertiesToPass = Object.values(properties).reduce((acc, curr) => {
+
+  const mappedProperties = Object.values(properties).reduce((acc, curr) => {
     if(curr.visible) {
-      acc[camelize(curr.propertyName)] = curr.defaultValue
+      acc[camelize(curr.propertyName)] = curr.defaultValue;
     }
     return acc;
   }, {});
+
+  const setPropertyValue = (property, defaultValue) => {
+
+    const acceptedValues = {
+      color: ["default", "inherit", "primary", "secondary"],
+      variant: ["contained", "outlined", "text"],
+      size: ["large", "medium", "small"],
+    }
+
+    return acceptedValues?.[property].includes(mappedProperties?.[property]) 
+      ? mappedProperties[property] 
+      : defaultValue;
+  }
+
+  const setBooleanPropertyValue = (property, defaultValue = false) => {
+    return typeof mappedProperties?.[property] === "boolean" 
+      ? mappedProperties[property] 
+      : defaultValue;
+  }
 
   return (
     <div css={previewStyles}>
       <p>Component Preview</p>
       <Button 
-        {...propertiesToPass}
+        // {...propertiesToPass} // :(
+        color={setPropertyValue("color", "primary")}
+        disabled={setBooleanPropertyValue("disabled")}
+        variant={setPropertyValue("variant", "contained")}
+        fullWidth={setBooleanPropertyValue("fullWidth")}
+        size={setPropertyValue("size", "small")}
+        disableRipple={setBooleanPropertyValue("disableRipple")}
+        disableFocusRipple={setBooleanPropertyValue("disableFocusRipple")}
+        disableElevation={setBooleanPropertyValue("disableElevation")}
       >Sign up</Button>
     </div>
   )

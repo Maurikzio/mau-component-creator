@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import fontStyles from "./font.styles";
 
 const styles = (theme) => css`
-  ${fontStyles(theme)};
+  ${fontStyles};
   
   body {
     color: ${theme.colors.gray.dark5};

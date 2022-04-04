@@ -1,4 +1,4 @@
-export default {
+const theme = {
   colors: {
     text: {
       primary: "#373737",
@@ -36,4 +36,6 @@ export default {
   typography: {
     fontFamily: "Lato",
   }
-}
+};
+
+export default theme;

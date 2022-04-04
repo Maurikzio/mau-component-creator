@@ -5,12 +5,13 @@ import { ReactComponent as CloseIcon } from "../../assets/icons/action_close.svg
 import IconButton from "../common/IconButton";
 import t from "prop-types";
 
-const righStyles = ({ colors }) => css`
+const righStyles = css`
   cursor: pointer;
   margin-left: auto;
 
   &.right-open {
     align-self: flex-start;
+    padding-top: 4px;
   }
 
   .icon-open {
@@ -21,7 +22,7 @@ const righStyles = ({ colors }) => css`
 const Right = (props) => {
   const { open, onClick } = props;
   return (
-    <div css={righStyles} className={`${open ? "right-open" : "right"}`}>
+    <div css={righStyles} className={`rigth-icon ${open ? "right-open" : "right"}`}>
       <IconButton icon={open ? <CloseIcon/> : <OpenIcon/>} onClick={onClick}/>
     </div>
   )
