@@ -4,7 +4,7 @@ import Fields from "./Fields";
 import Button from "../common/Button";
 import produce from "immer";
 import { css } from "@emotion/react";
-import { camelize } from "../../utils";
+import { camelize, updateDraftByType } from "../../utils";
 import t from "prop-types";
 
 const addPropertyStyles = ({ colors }) => css`
@@ -56,7 +56,7 @@ const AddProperty = (props) => {
     if (!newProperty.propertyName) {
       setAddingIssues({...addingIssues, propertyNameEmpty: "Property name is required"});
     }
-  }, [])
+  }, []);
 
   const updateNewProperty = useCallback(({field, newValue}) => {
 
@@ -74,24 +74,10 @@ const AddProperty = (props) => {
         if(basicFields.includes(field)) {
           draft[field] = newValue;
         } else if (field === "type") {
-          if (newValue === "boolean") {
-            delete draft.options;
-            delete draft.control;
-            draft.defaultValue = false;
-          } else if (newValue === "one of") {
-            draft.defaultValue = "";
-            draft.options = [];
-            draft.control = "select";
-          } else if (newValue === "node") {
-            delete draft.options;
-            draft.defaultValue = "";
-            draft.control = "textarea";
-          }
-          draft.type = newValue;
+          updateDraftByType(draft, newValue);
         }
       })
     );
-
   });
 
   const handleOnAdd = () => {

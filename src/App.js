@@ -8,6 +8,7 @@ import Aside from "./components/Aside";
 import { css } from "@emotion/react";
 import produce from "immer";
 import initialProperties from "./properties";
+import { updateDraftByType } from "./utils";
 
 
 const appStyles = ({ colors }) => css`
@@ -26,7 +27,7 @@ const appStyles = ({ colors }) => css`
 
 function App() {
 
-  const [ properties, setProperties ] = useState(initialProperties);
+  const [properties, setProperties] = useState(initialProperties);
 
   const updatePropertyField = useCallback(({id, field, newValue}) => {
     setProperties(
@@ -36,20 +37,7 @@ function App() {
         if(basicFields.includes(field)) {
           property[field] = newValue;
         } else if (field === "type") {
-          if(newValue === "boolean") {
-            delete property.options;
-            delete property.control;
-            property.defaultValue = false;
-          } else if (newValue === "one of") {
-            property.defaultValue = "";
-            property.options = [];
-            property.control = "select";
-          } else if (newValue === "node") {
-            delete property.options;
-            property.defaultValue = "";
-            property.control = "textarea";
-          }
-          property.type = newValue;
+          updateDraftByType(property, newValue);
         }
       })
     )
